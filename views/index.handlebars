@@ -1,38 +1,59 @@
-<h1>Cats!</h1>
+<h1 id="head">Eat da burger!</h1>
 
-<h2>Cats that are not sleepy!</h2>
+<div id="img">
+  <img src="/public/assets/img/burger.png" alt="burger" width="200px">
+</div>
+
+<div id="burgers-divs">
+  <div id="not-devoured">
+    <h2>Burgers to devour!</h2>
 
 <ul>
-  {{#each cats}}
-    {{#unless sleepy}}
+  {{#each burgers}}
+    {{#unless this.devoured}}
+    <li>
+      <p>{{id}}. {{burger_name}}</p>
+      <button data-burgerid="{{this.id}}" class="devourbtn">Devour</button>
+    </li>
       {{> cats/cat-block sleep=true}}
     {{/unless}}
   {{/each}}
 </ul>
+  </div>
 
-<h2>Cats that are sleepy!</h2>
-
+<div id="devoured">
+    <h2>Burgers already devoured:</h2>
 <ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
+  {{#each burgers}}
+    {{#if devoured}}
+    <li>
+      <p>{{id}}. {{burger_name}}</p>
+    </li>
     {{/if}}
   {{/each}}
 </ul>
+</div>
+</div>
 
-<h2>Add a Cat</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="slee">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
-
-  <button type="submit">Add Cat</button>
+<form action="/api/burgers" method="POST">
+  <input type="text" name="burger_name" id="name" placeholder="add yummy burger">
+<button type="submit" id="submit">submit</button>
 </form>
+
+<script type="text/javascript">
+$(".devourbtn").on("click", function(event){
+  event.preventDefault();
+  var id = $(this).data("burgerid");
+
+  $.ajax({
+    method: "PUT",
+    url: "/api/burgers/" + id
+  }).then(
+    function(){
+      console.log("devoured id", id);
+      location.reload
+    });
+
+  });
+
+</script>

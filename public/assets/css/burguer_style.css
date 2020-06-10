@@ -1,0 +1,47 @@
+body {
+background-color: blue;
+}
+#head {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    text-align: center;
+}
+
+h2{
+    margin-top: 30px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 400;
+}
+p{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+button{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: larger;
+}
+img{
+    display: block;
+    margin: auto;
+}
+#burger-divs{
+    display: flex;
+    justify-content: center;
+}
+#not-devoured{
+    margin-right: 60px;
+}
+input{
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+}
+#submit{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+#enter{
+    text-align: center;
+}
